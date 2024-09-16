@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add a Book</title>
+    <title>Edit a Book</title>
     <link
       type="text/css"
       rel="stylesheet"
@@ -13,8 +13,10 @@
   </head>
   <body>
     <div class="container">
-      <h1>Add a Book</h1>
-      <form th:action="@{/save}" th:object="${book}" method="post">
+      <h1>Edit a Book</h1>
+      <form th:action="@{/update}" th:object="${book}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input
@@ -69,6 +71,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/books" class="btn btn-secondary">Cancel</a>
       </form>
     </div>
   </body>
