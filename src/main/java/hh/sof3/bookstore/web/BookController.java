@@ -47,7 +47,7 @@ public class BookController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editBook(@PathVariable("id") long bookId, Model model) {
+    public String editBook(@PathVariable("id") Long bookId, Model model) {
         Book book = repository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid book Id:" + bookId));;
         model.addAttribute("book", book);
