@@ -40,9 +40,9 @@ public class BookController {
     }
 
     @PostMapping("/save")
-    public String saveBook(Book book) {
+    public String saveBook(@ModelAttribute Book book) {
         repository.save(book);
-        return "redirect:books";
+        return "redirect:/books";
     }
 
     @GetMapping("/delete/{id}")

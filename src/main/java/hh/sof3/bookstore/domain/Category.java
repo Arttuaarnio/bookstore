@@ -22,6 +22,7 @@ public class Category {
 	private List<Book> books;
 
     public Category(Long categoryId, String name) {
+        super();
         this.name = name;
     }
 
