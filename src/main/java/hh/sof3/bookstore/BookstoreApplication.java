@@ -17,17 +17,21 @@ public class BookstoreApplication {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
 
-	 @Bean
-    public CommandLineRunner demo(CategoryRepository categoryRepository, BookRepository bookRepository) {
-        return (args) -> {
-			categoryRepository.save(new Category("oppikirja"));
-			categoryRepository.save(new Category("keittokirja"));
+	@Bean
+	public CommandLineRunner demo(CategoryRepository categoryRepository, BookRepository bookRepository) {
+		return (args) -> {
 
-            bookRepository.save(new Book("Robotiikka ja tekoäly", "Pasi Hänninen", 2022, "9789527394120", 42.95));
-            bookRepository.save(new Book("Nordic Winter Cookbook", "Viola Minerva Virtamo", 2021, "9789527381465", 24.95));
+			Category oppikirja = new Category("oppikirja");
+			Category keittokirja = new Category("keittokirja");
+			categoryRepository.save(oppikirja);
+			categoryRepository.save(keittokirja);
 
-            categoryRepository.findAll().forEach(category -> System.out.println(category.toString()));
-            bookRepository.findAll().forEach(book -> System.out.println(book.toString()));
-        };
+			bookRepository.save(new Book("Robotiikka ja tekoäly", "Pasi Hänninen", 2022, "9789527394120", 42.95, oppikirja));
+			bookRepository
+					.save(new Book("Nordic Winter Cookbook", "Viola Minerva Virtamo", 2021, "9789527381465", 24.95, keittokirja));
+
+			categoryRepository.findAll().forEach(category -> System.out.println(category.toString()));
+			bookRepository.findAll().forEach(book -> System.out.println(book.toString()));
+		};
 	}
 }

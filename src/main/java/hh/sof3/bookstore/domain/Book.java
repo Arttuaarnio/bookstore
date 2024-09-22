@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -18,13 +20,18 @@ public class Book {
     private String isbn;
     private Double price;
 
-    public Book(String title, String author, Integer publicationYear, String isbn, Double price) {
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    private Category category;
+
+    public Book(String title, String author, Integer publicationYear, String isbn, Double price, Category category) {
         super();
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        this.category = category;
     }
 
     public Book() {
@@ -33,6 +40,14 @@ public class Book {
         this.publicationYear = null;
         this.isbn = null;
         this.price = null;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Long getId() {
@@ -85,8 +100,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book id = " + id + ", title = " + title + ", author = " + author + ", publicationYear = "
-                + publicationYear
+        return "Book id = " + id + ", title = " + title + ", author = " + author + ", year = " + publicationYear
                 + ", isbn = " + isbn + ", price = " + price;
     }
 
