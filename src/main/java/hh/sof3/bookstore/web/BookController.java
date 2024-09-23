@@ -42,7 +42,7 @@ public class BookController {
     @PostMapping("/save")
     public String saveBook(@ModelAttribute Book book) {
         repository.save(book);
-        return "redirect:/books";
+        return "redirect:books";
     }
 
     @GetMapping("/delete/{id}")
@@ -56,6 +56,7 @@ public class BookController {
         Book book = repository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid book Id:" + bookId));;
         model.addAttribute("book", book);
+        model.addAttribute("categories", categoryRepository.findAll());
         return "editbook";
     }
 
