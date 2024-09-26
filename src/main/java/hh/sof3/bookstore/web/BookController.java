@@ -21,11 +21,6 @@ public class BookController {
      @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/index")
-    public String bookstoreHomepage() {
-        return "welcomepage";
-    }
-
     @GetMapping("/books")
     public String bookList(Model model) {
         model.addAttribute("books", repository.findAll());
