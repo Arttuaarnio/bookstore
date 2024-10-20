@@ -33,6 +33,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
          * curruser.getPasswordHash(),
          * AuthorityUtils.createAuthorityList(curruser.getRole()));
          */
-        return user;
+        return user; 
     }
 }
